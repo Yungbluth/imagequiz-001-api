@@ -21,6 +21,27 @@ const postgrePool = new Pool({
   ssl: isProduction,
 });
 
+function getAllCategories() {
+  return postgrePool.query('select * from category')
+  .then(result => result.rows);
+}
+
+function getQuiz(categoryId) {
+  return postgrePool.query('select * from quiz where category_id = $1', [categoryId])
+  .then(result => result.rows);
+}
+
+function getQuestionId(quizId) {
+  return postgrePool.query('select * from quiz_question where quiz_id = $1', [quizId])
+  .then(result => result.rows);
+}
+
+function getQuestion(questionId) {
+  return postgrePool.query('select * from question where id = $1', [questionId])
+  .then(result => result.rows);
+}
+/**
+
 function saveTheme(name) {
    return postgrePool.query('insert into theme(name) values($1) returning id', [name])
    .then(result => result.rows[0].id);
@@ -109,5 +130,5 @@ function getImageData(imageId) {
     }
   });
 }
-
-module.exports = { saveTheme, getAllThemes, getImageIds, getImageName, saveImage, saveLabel, getLabel, getLabels , updateLabel, saveImageData, getImageData}
+*/
+module.exports = { getAllCategories, getQuiz, getQuestionId, getQuestion }

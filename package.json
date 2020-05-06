@@ -16,6 +16,7 @@
     "express-fileupload": "^1.1.6",
     "favicon": "0.0.2",
     "nodemon": "^2.0.2",
-    "pg": "^7.18.2"
+    "pg": "^7.18.2",
+    "postgresql": "0.0.1"
   }
 }
